@@ -3,25 +3,25 @@
  */
 
 require.config( {
-    baseUrl: "src/js/module",
+    baseUrl: "webforms/src/js/module",
     paths: {
-        "core-lib": "../../../public/lib/enketo-core/lib",
+        "core-lib": "../../lib/enketo-core/lib",
         "require-config": "../require-build-config",
-        "enketo-js": "../../../public/lib/enketo-core/src/js",
-        "enketo-widget": "../../../public/lib/enketo-core/src/widget",
+        "enketo-js": "../../lib/enketo-core/src/js",
+        "enketo-widget": "../../lib/enketo-core/src/widget",
         "enketo-config": "../config.json", //should move elsewhere
-        "text": "../../../public/lib/enketo-core/lib/text/text",
-        "xpath": "../../../public/lib/enketo-core/lib/xpath/build/xpathjs_javarosa",
-        "file-manager": "../../../public/lib/enketo-core/lib/file-manager/src/file-manager",
-        "jquery.xpath": "../../../public/lib/enketo-core/lib/jquery-xpath/jquery.xpath",
-        "Modernizr": "../../../public/lib/enketo-core/lib/Modernizr",
-        "bootstrap": "../../../public/lib/enketo-core/lib/bootstrap",
-        "jquery": "../../../public/lib/enketo-core/lib/jquery",
-        "jquery.touchswipe": "../../../public/lib/enketo-core/lib/jquery-touchswipe/jquery.touchSwipe",
-        "file-saver": "../../../public/lib/file-saver/FileSaver",
-        "Blob": "../../../public/lib/blob/Blob",
-        "vkbeautify": "../../../public/lib/vkbeautify/vkbeautify",
-        "leaflet": "../../../public/lib/enketo-core/lib/leaflet/leaflet"
+        "text": "../../lib/enketo-core/lib/text/text",
+        "xpath": "../../lib/enketo-core/lib/xpath/build/xpathjs_javarosa",
+        "file-manager": "../../lib/enketo-core/lib/file-manager/src/file-manager",
+        "jquery.xpath": "../../lib/enketo-core/lib/jquery-xpath/jquery.xpath",
+        "Modernizr": "../../lib/enketo-core/lib/Modernizr",
+        "bootstrap": "../../lib/enketo-core/lib/bootstrap",
+        "jquery": "../../lib/enketo-core/lib/jquery",
+        "jquery.touchswipe": "../../lib/enketo-core/lib/jquery-touchswipe/jquery.touchSwipe",
+        "file-saver": "../../lib/file-saver/FileSaver",
+        "Blob": "../../lib/blob/Blob",
+        "vkbeautify": "../../lib/vkbeautify/vkbeautify",
+        "leaflet": "../../lib/enketo-core/lib/leaflet/leaflet"
     },
     shim: {
         "xpath": {

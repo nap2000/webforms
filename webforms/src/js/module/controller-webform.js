@@ -298,10 +298,10 @@ define( [ 'gui', 'connection', 'settings', 'enketo-js/Form', 'enketo-js/FormMode
                     }
                     //also use for iframed forms
                     else {
-                        gui.alert( 'This form will now be closed!', 'Submission Successful!', 'success' );	// smap changed text
-                    	// Smap for these single submit forms without a return url just close the window
+                        gui.alert( 'This form will now be closed!', 'Submission Successful!', 'success' ); // smap changed text
+                        // Smap for these single submit forms without a return url just close the window
                         setTimeout( function() {
-                        	window.open('','_self').close();
+                            window.open( '', '_self' ).close();
                         }, 1500 );
                         //resetForm( true );
                     }
@@ -410,12 +410,12 @@ define( [ 'gui', 'connection', 'settings', 'enketo-js/Form', 'enketo-js/FormMode
                     fileManager.retrieveFile( instanceID, fileO, {
                         success: function( fileObj ) {
                             count++;
-                            if( fileObj ) {
-                            	files.push( fileObj );
-                            	sizes.push( fileObj.file.size );
+                            if ( fileObj ) {
+                                files.push( fileObj );
+                                sizes.push( fileObj.file.size );
                             } else {
-                            	// Smap allow for file not to be found
-                            	failedFiles.push( fileO.fileName );
+                                // Smap allow for file not to be found
+                                failedFiles.push( fileO.fileName );
                             }
                             if ( count == $fileNodes.length ) {
                                 distributeFiles();

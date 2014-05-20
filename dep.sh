@@ -1,8 +1,7 @@
 #!/bin/sh
 
 # webforms
-cp public/build/js/webform-combined.min.js webforms/js/libs
-cp public/checkforconnection.php webforms
+#cp public/build/js/webform-combined.min.js webforms/js/libs
 
 
 # Create tar file and deploy

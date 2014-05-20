@@ -18,14 +18,14 @@ module.exports = function( grunt ) {
         },
         jsbeautifier: {
             test: {
-                src: [ "*.js", "src/js/**/*.js" ],
+                src: [ "*.js", "webforms/src/js/**/*.js" ],
                 options: {
                     config: "./.jsbeautifyrc",
                     mode: "VERIFY_ONLY"
                 }
             },
             fix: {
-                src: [ "*.js", "src/js/**/*.js" ],
+                src: [ "*.js", "webforms/src/js/**/*.js" ],
                 options: {
                     config: "./.jsbeautifyrc"
                 }
@@ -35,22 +35,22 @@ module.exports = function( grunt ) {
             options: {
                 jshintrc: ".jshintrc"
             },
-            all: [ "*.js", "src/js/**/*.js", "!src/js/extern.js" ]
+            all: [ "*.js", "webforms/src/js/**/*.js", "!webforms/src/js/extern.js" ]
         },
         prepWidgetSass: {
             writePath: "src/sass/component/_widgets.scss",
-            widgetConfigPath: "src/js/config.json"
+            widgetConfigPath: "webforms/src/js/config.json"
         },
         watch: {
             sass: {
-                files: [ 'src/js/config.json', 'src/sass/**/*.scss', 'public/lib/enketo-core/src/**/*.scss' ],
+                files: [ 'webforms/src/js/config.json', 'src/sass/**/*.scss', 'webforms/src/lib/enketo-core/src/**/*.scss' ],
                 tasks: [ 'style' ],
                 options: {
                     spawn: false
                 }
             },
             js: {
-                files: [ '*.js', 'src/js/*/**.js', 'public/enketo-core/**/*.js' ],
+                files: [ '*.js', 'webforms/src/js/*/**.js', 'webforms/src/lib/enketo-core/**/*.js' ],
                 tasks: [ 'compile' ],
                 options: {
                     spawn: false
@@ -74,49 +74,13 @@ module.exports = function( grunt ) {
                 } ]
             }
         },
-        jasmine: {
-            test: {
-                src: [ "src/js/module/connection.js", "src/js/module/store.js" ],
-                options: {
-                    keepRunner: true,
-                    specs: "test/spec/*.spec.js",
-                    helpers: [],
-                    template: require( "grunt-template-jasmine-requirejs" ),
-                    templateOptions: {
-                        //requireConfigFile: "src/js/require-config.js",
-                        requireConfig: {
-                            baseUrl: "src/js/module",
-                            paths: {
-                                "gui": "../../../test/mock/gui.mock",
-                                "lib": "../../../public/lib",
-                                "enketo-js": "../../../public/lib/enketo-core/src/js",
-                                "enketo-js/Form": "../../../test/mock/Form.mock",
-                                "enketo-js/FormModel": "../../../test/mock/FormModel.mock",
-                                "enketo-widget": "../../../test/mock/empty.mock",
-                                "enketo-config": "config.json", //should move elsewhere
-                                "text": "../../../public/lib/enketo-core/lib/text/text",
-                                "xpath": "../../../test/mock/empty.mock",
-                                "file-manager": "../../../test/mock/empty.mock",
-                                "jquery.xpath": "../../../test/mock/empty.mock",
-                                "Modernizr": "../../../test/mock/empty.mock",
-                                "bootstrap": "../../../public/lib/enketo-core/lib/bootstrap",
-                                "jquery": "../../../public/lib/enketo-core/lib/jquery",
-                                "file-saver": "../../../test/mock/file-saver.mock",
-                                "Blob": "../../../test/mock/Blob.mock",
-                                "vkbeautify": "../../../test/mock/vkbeautify.mock"
-                            },
-                        }
-                    }
-                }
-            }
-        },
         // this compiles all javascript to a single minified file
         requirejs: {
             options: {
                 //generateSourceMaps: true,
                 preserveLicenseComments: false,
-                baseUrl: "src/js/module",
-                mainConfigFile: "src/js/require-build-config.js",
+                baseUrl: "webforms/src/js/module",
+                mainConfigFile: "webforms/src/js/require-build-config.js",
                 findNestedDependencies: true,
                 include: [ 'core-lib/require' ],
                 optimize: "uglify2",
@@ -158,7 +122,7 @@ module.exports = function( grunt ) {
                     overwrite: false,
                     cwd: 'src/sass/grid/js',
                     src: [ '*.js' ],
-                    dest: 'src/js/module'
+                    dest: 'webforms/src/js/module'
                 } ]
             }
         }
@@ -167,7 +131,7 @@ module.exports = function( grunt ) {
 
     function getWebformCompileOptions( type ) {
         //add widgets js and widget config.json files
-        var widgets = grunt.file.readJSON( 'src/js/config.json' ).widgets;
+        var widgets = grunt.file.readJSON( 'webforms/src/js/config.json' ).widgets;
         widgets.forEach( function( widget, index, arr ) {
             arr.push( 'text!' + widget.substr( 0, widget.lastIndexOf( '/' ) + 1 ) + 'config.json' );
         } );
@@ -183,7 +147,6 @@ module.exports = function( grunt ) {
 
     grunt.loadNpmTasks( "grunt-jsbeautifier" );
     grunt.loadNpmTasks( 'grunt-contrib-connect' );
-    grunt.loadNpmTasks( "grunt-contrib-jasmine" );
     grunt.loadNpmTasks( "grunt-contrib-watch" );
     grunt.loadNpmTasks( "grunt-contrib-jshint" );
     grunt.loadNpmTasks( "grunt-contrib-sass" );
@@ -203,9 +166,9 @@ module.exports = function( grunt ) {
                 //strip require.js module name
                 widgetFolderPath = widget.substr( 0, widget.lastIndexOf( "/" ) + 1 );
                 //replace widget require.js path shortcut with proper path relative to src/js
-                widgetSassPath = widgetFolderPath.replace( /^enketo-widget\//, "public/lib/enketo-core/src/widget/" );
+                widgetSassPath = widgetFolderPath.replace( /^enketo-widget\//, "webforms/src/lib/enketo-core/src/widget/" );
                 //create path to widget config file
-                widgetConfigPath = widgetFolderPath.replace( /^enketo-widget\//, "public/lib/enketo-core/src/widget/" ) + "config.json";
+                widgetConfigPath = widgetFolderPath.replace( /^enketo-widget\//, "webforms/src/lib/enketo-core/src/widget/" ) + "config.json";
                 grunt.log.writeln( "widget config path: " + widgetConfigPath );
                 //create path to widget stylesheet file
                 widgetSassPath += grunt.file.readJSON( widgetConfigPath ).stylesheet;
@@ -219,7 +182,7 @@ module.exports = function( grunt ) {
         grunt.file.write( config.writePath, content );
 
     } );
-    grunt.registerTask( "test", [ "jsbeautifier:test", "jshint", "jasmine" ] );
+    grunt.registerTask( "test", [ "jsbeautifier:test", "jshint" ] );
     grunt.registerTask( "style", [ "prepWidgetSass", "sass:dist" ] );
     grunt.registerTask( "compile", [ "symlink", "requirejs" ] );
     grunt.registerTask( 'server', [ 'connect:server:keepalive' ] );
