@@ -1,7 +1,9 @@
 [Smap Webforms](http://www.smap.com.au) 
 ======
 
-Webforms is a fork of Enketo Smart Paper (https://enketo.org) that is being reworked to implement forms in HTML5 browsers that are being managed in a Smap Server.
+Webforms is a fork of Enketo Smart Paper (https://enketo.org) that has been modified to work with a Smap Server.
+
+The project is not currently stable and will not build or run.
 
 Follow the latest news about Smap on our [blog](http://blog.smap.com.au) and on twitter [@dgmsot](https://twitter.com/dgmsot).
 
@@ -27,4 +29,4 @@ Development
 Acknowledgements
 ----------------
 
-This project has sprung from the amazing work of (http://enketo.org) by Enketo
+This project has sprung from the great  work of (http://enketo.org) by Enketo
