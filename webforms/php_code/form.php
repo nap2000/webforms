@@ -26,10 +26,12 @@ class Form {
 	public $xml;				// XML element
 	public $xml_data;			// XML element
 	public $form;
+	public $html_manifest_url;	// The URL that will return the manifest for this form
 	public $data_to_edit;		// The instance XML of the data to be edited
 	public $data_to_edit_id;	// The GUID that identifies a record to be updated uniquely
 	//  note the datakeyvalue would not uniquely identify a record as
 	//  replaced records can have the same key value
+	
 	function __construct($user, $server_url, $form_id) {
 		$this->user = $user;
 		$this->server_url = $server_url;
@@ -47,7 +49,10 @@ class Form {
 	function getXML() {
 
 		$form_url = $this->server_url . '/formXML?key=' . $this->form_id . '&user=' . $this->user;
-			
+
+		// Get the manifest URL (if this form modifies existing data then the data keys will be added later)
+		$this->html_manifest_url = '/htmlManifest/' . $this->form_id;
+		
 		user_error('Form Url: ' . $form_url);
 			
 		$httpRequest_OBJ = new HttpRequest($form_url, HTTP_METH_GET, null);
@@ -76,8 +81,11 @@ class Form {
 	function getData($datakey, $datakeyvalue) {
 		user_error('Getting data, Data key: ' . $datakey.' : ' . $datakeyvalue);
 		$instance_url = $this->server_url . '/instanceXML/' . $this->form_id . '/0?user=' . $this->user .
-		'&key=' . $datakey . '&keyval=' . $datakeyvalue;
+			'&key=' . $datakey . '&keyval=' . $datakeyvalue;
 
+		// Clear the html manifest URL - Single shot survey updates are not cached
+		$this->html_manifest_url = "";
+		
 		$httpRequest_OBJ = new HttpRequest($instance_url, HTTP_METH_GET, null);
 		$httpRequest_OBJ->setContentType = 'Content-Type : text/xml';
 
@@ -98,7 +106,6 @@ class Form {
 			$this->data_to_edit = json_encode($this->xml_data->asXML());
 
 		} else {
-			echo 'InstanceXML response code: ' . $result->getResponseCode() . '</br>';
 			error_log('InstanceXML response code: ' . $result->getResponseCode(), 0);
 		}
 

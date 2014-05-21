@@ -14,7 +14,7 @@
         "enketo-widget/select-likert/likertitem"
     ],
     "tile": {
-        "source": "https://{s}.tiles.mapbox.com/v3/examples.map-vyofok3q/{z}/{x}/{y}.png",
+	 "source": "http://otile1.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.jpg",
         "attribution": "Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> contributors"
     },
     "google_api_key": ""

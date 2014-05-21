@@ -1,5 +1,7 @@
 <?php
 
+	// Functions to generate the form's data
+	
 	require 'php_code/webforms.php';		// Configuration data
 	require 'php_code/form.php';			// Form class
 	require 'php_code/formXML_fns.php';	// Functions and variables used by this service
@@ -9,9 +11,21 @@
 	$data = $form->xslt_transform($xml_doc, $jr2Data_doc);	//SimpleXMLElement
 	$data_to_edit = $form->data_to_edit;
 	$data_to_edit_id = $form->data_to_edit_id;
-	
-	require 'elements/start.inc';	
+
+	// Write out the html
+?>		
+<!DOCTYPE html>
+<html lang="en"  class="no-js" 
+				<?php if (!empty($form->html_manifest_url)): ?>
+					manifest="<?php echo $form->html_manifest_url; ?>"
+				<?php endif; ?>
+				>
+<?php
+	require 'elements/start.inc';
+		
+	// Add the data to the form
 ?>
+
 	<script type="text/javascript">
 		var modelStr = <?php echo json_encode($data->model->asXML());  ?>;
 		<?php if (!empty($data_to_edit)): ?>
@@ -24,7 +38,7 @@
 		<?php endif; ?>
 	</script>
 <?php
-	require 'elements/start2_dev.inc';
+	require 'elements/start2_prod.inc';
 	require 'elements/dialogs.inc';	
 	include 'elements/form-header.inc';	
 	echo $html->asXML();

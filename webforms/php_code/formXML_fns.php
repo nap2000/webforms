@@ -83,7 +83,7 @@ along with SMAP.  If not, see <http://www.gnu.org/licenses/>.
 	 * Get the form's data
 	 */
 	$form = new Form($user, $server_url, $form_id);		// Create a form object to hold data about the form
-	$form->getXml($form_id, $server_url);				// Get the xml for the form
+	$form->getXML($form_id, $server_url);				// Get the xml for the form
 	if($getdata) {
 		$form->getData($datakey, $datakeyvalue);		// Get the data for this form
 	}

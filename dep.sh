@@ -5,7 +5,7 @@
 
 
 # Create tar file and deploy
-tar -czf webforms.tgz webforms fonts lib
+tar -czf webforms.tgz webforms fonts lib public
 tar -xzf webforms.tgz -C  /Library/WebServer/Documents
 sudo apachectl restart
 cp webforms.tgz ../../deploy/

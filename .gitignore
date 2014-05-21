@@ -6,4 +6,5 @@ src/*
 public/*
 .grunt/*
 .Gruntfile*
+.DS_store
 _SpecRunner.html
