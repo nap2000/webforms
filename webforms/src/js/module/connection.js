@@ -37,10 +37,10 @@ define( [ 'gui', 'settings', 'store', 'jquery' ], function( gui, settings, store
         uploadQueue = [];
 
     // Smap Set submission url
-    if ( typeof jrDataStrToEditId === "undefined" ) {
+    if ( typeof instanceStrToEditId === "undefined" ) {
         SUBMISSION_URL = "/submission"; // Send submission straight back to the server
     } else {
-        SUBMISSION_URL = "/submission/" + jrDataStrToEditId; // Update existing record
+        SUBMISSION_URL = "/submission/" + instanceStrToEditId; // Update existing record
     }
 
     //init();

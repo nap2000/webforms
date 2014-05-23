@@ -34,7 +34,9 @@
 			var instanceStrToEdit = undefined;
 		<?php endif; ?>
 		<?php if (!empty($data_to_edit_id)): ?>
-			var jrDataStrToEditId = <?php echo $data_to_edit_id; ?>;
+			var instanceStrToEditId = <?php echo $data_to_edit_id; ?>;
+		<?php else: ?>
+			var instanceStrToEditId = undefined;
 		<?php endif; ?>
 	</script>
 <?php
@@ -43,7 +45,7 @@
 	include 'elements/form-header.inc';	
 	echo $html->asXML();
 	
-	if(empty($data_to_edit)) {
+	if(empty($data_to_edit_id)) {
 		echo "<button id=\"submit-form\" class=\"btn btn-primary btn-large\" >Submit</button>";
 	} else {
 		echo "<button id=\"submit-form-single\" class=\"btn btn-primary btn-large\" >Submit</button>";
