@@ -45,11 +45,24 @@
 	include 'elements/form-header.inc';	
 	echo $html->asXML();
 	
+	// Form footer
+	echo("<section class=\"form-footer\">");
+	echo("<div class=\"content\">");
+	echo("<fieldset class=\"draft question\"><div class=\"option-wrapper\"><label class=\"select\"><input class=\"ignore\" type=\"checkbox\" name=\"draft\"/><span class=\"option-label\">Save as Draft</span></label></div></fieldset>");
+	echo("<div class=\"main-controls\">");
+	echo("<a class=\"previous-page disabled\" href=\"#\">Back</a>");
+	
 	if(empty($data_to_edit_id)) {
 		echo "<button id=\"submit-form\" class=\"btn btn-primary btn-large\" >Submit</button>";
 	} else {
 		echo "<button id=\"submit-form-single\" class=\"btn btn-primary btn-large\" >Submit</button>";
 	}
+	echo("<a class=\"btn btn-primary large next-page\" href=\"#\">Next</span></a>");
 	
-	require 'elements/form-footer.inc';
+	echo("</div>");	// main controls
+	echo("<a class=\"btn btn-default disabled first-page\" href=\"#\">Return to Beginning</a>");
+	echo("<a class=\"btn btn-default disabled last-page\" href=\"#\">Go to End</a>");
+	echo("</div");	// content
+	echo("</article>");
+
 ?>
