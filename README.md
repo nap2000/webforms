@@ -9,9 +9,14 @@ Webforms is not intended to maintain any alignment with Enketo Smart Paper and w
 * [Enketo Core](https://github.com/nap2000/enketo-core) which we contribute back to the Enketo community.
 * [Enketo XSLT](https://github.com/MartijnR/enketo-xslt) - used inside this repo
 
+Demonstration
+-------------
+The following video shows the use of Smap Webforms to manage information on assets owned by a utility.
+
+[![ScreenShot](http://img.youtube.com/vi/FUNPOmMnt1I/0.jpg)](https://www.youtube.com/watch?v=FUNPOmMnt1I)
 Browser support
 ---------------
-* IE is only supported from version 10 onwards (older versions do not support the required technologies). For performance reasons, we cannot recommend this browser though (it has no native XPath Evaluator)
+* IE is only supported from version 10 onwards (older versions do not support the required technologies). For performance reasons this browser is not recommended as it has no native XPath Evaluator
 * Chrome, Firefox, Safari for both desktop and mobile devices are supported. Chrome is recommended at the moment.
 
 Frequently Asked Questions
