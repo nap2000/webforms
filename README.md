@@ -16,9 +16,8 @@ Browser support
 * IE is only supported from version 10 onwards (older versions do not support the required technologies). For performance reasons, we cannot recommend this browser though (it has no native XPath Evaluator)
 * Chrome, Firefox, Safari for both desktop and mobile devices are supported. Chrome is recommended at the moment.
 
-Frequently Asked Questions
----------------------------
-##### How to install this thing?
+How to Install
+--------------
 To Follow
 
 Development

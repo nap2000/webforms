@@ -26,7 +26,7 @@ define( [ 'gui', 'settings', 'store', 'jquery' ], function( gui, settings, store
         GETSURVEYURL_URL = '/api_v1/survey',
         SUBMISSION_URL,
         //this.SUBMISSION_TRIES = 2;
-        currentOnlineStatus = null,
+        currentOnlineStatus = true, // smap set to true from null
         uploadOngoingID = null,
         uploadOngoingBatchIndex = null,
         uploadResult = {
@@ -50,13 +50,13 @@ define( [ 'gui', 'settings', 'store', 'jquery' ], function( gui, settings, store
      * @param  { boolean=} submissions whether or not to prepare the connection object to deal with submissions
      */
     function init( submissions ) {
-        checkOnlineStatus();
+        //checkOnlineStatus();		smap no need to check for online status - submission will do that
         if ( submissions ) {
             _setMaxSubmissionSize();
         }
-        window.setInterval( function() {
-            checkOnlineStatus();
-        }, 15 * 1000 );
+        //window.setInterval( function() {
+        //    checkOnlineStatus();
+        //}, 15 * 1000 );
     }
 
     function checkOnlineStatus() {
@@ -183,36 +183,36 @@ define( [ 'gui', 'settings', 'store', 'jquery' ], function( gui, settings, store
         if ( uploadQueue.length > 0 ) {
             record = uploadQueue.shift();
             progress.update( record, 'ongoing', '' );
-            if ( currentOnlineStatus === false ) {
-                _processOpenRosaResponse( 0, record );
-            } else {
-                uploadOngoingID = record.instanceID;
-                uploadOngoingBatchIndex = record.batchIndex;
-                content = record.formData;
-                content.append( 'Date', new Date().toUTCString() );
-                console.debug( 'prepared to send: ', content );
-                //last = (this.uploadQueue.length === 0) ? true : false;
-                _setOnlineStatus( null );
-                $( document ).trigger( 'submissionstart' );
-                //console.debug('calbacks: ', callbacks );
-                $.ajax( SUBMISSION_URL, {
-                    type: 'POST',
-                    data: content,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    //TIMEOUT TO BE TESTED WITH LARGE SIZE PAYLOADS AND SLOW CONNECTIONS...
-                    timeout: 300 * 1000,
-                    //beforeSend: function(){return false;},
-                    complete: function( jqXHR, response ) {
-                        uploadOngoingID = null;
-                        uploadOngoingBatchIndex = null;
-                        callbacks.complete( jqXHR, response );
-                    },
-                    error: callbacks.error,
-                    success: callbacks.success
-                } );
-            }
+            //if ( currentOnlineStatus === false ) {		// Just do it! smap
+            //    _processOpenRosaResponse( 0, record );
+            //} else {
+            uploadOngoingID = record.instanceID;
+            uploadOngoingBatchIndex = record.batchIndex;
+            content = record.formData;
+            content.append( 'Date', new Date().toUTCString() );
+            console.debug( 'prepared to send: ', content );
+            //last = (this.uploadQueue.length === 0) ? true : false;
+            _setOnlineStatus( null );
+            $( document ).trigger( 'submissionstart' );
+            //console.debug('calbacks: ', callbacks );
+            $.ajax( SUBMISSION_URL, {
+                type: 'POST',
+                data: content,
+                cache: false,
+                contentType: false,
+                processData: false,
+                //TIMEOUT TO BE TESTED WITH LARGE SIZE PAYLOADS AND SLOW CONNECTIONS...
+                timeout: 300 * 1000,
+                //beforeSend: function(){return false;},
+                complete: function( jqXHR, response ) {
+                    uploadOngoingID = null;
+                    uploadOngoingBatchIndex = null;
+                    callbacks.complete( jqXHR, response );
+                },
+                error: callbacks.error,
+                success: callbacks.success
+            } );
+            //}
         }
     }
 

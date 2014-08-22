@@ -51,8 +51,8 @@ class Form {
 		$form_url = $this->server_url . '/formXML?key=' . $this->form_id . '&user=' . $this->user;
 
 		// Get the manifest URL (if this form modifies existing data then the data keys will be added later)
-		$this->html_manifest_url = '/htmlManifest/' . $this->form_id;
-		
+		//$this->html_manifest_url = '/htmlManifest/' . $this->form_id;
+		$this->html_manifest_url = '';	// TODO add manifest
 		user_error('Form Url: ' . $form_url);
 			
 		$httpRequest_OBJ = new HttpRequest($form_url, HTTP_METH_GET, null);
