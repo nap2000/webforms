@@ -53,7 +53,6 @@ class Form {
 		// Get the manifest URL (if this form modifies existing data then the data keys will be added later)
 		//$this->html_manifest_url = '/htmlManifest/' . $this->form_id;
 		$this->html_manifest_url = '';	// TODO add manifest
-		user_error('Form Url: ' . $form_url);
 			
 		$httpRequest_OBJ = new HttpRequest($form_url, HTTP_METH_GET, null);
 		$httpRequest_OBJ->setContentType = 'Content-Type : text/xml';
@@ -153,7 +152,7 @@ class Form {
 		//echo $sHtml;
 		foreach ($xml->xpath('/root/form/descendant::*[@src]') as $el) {
 			$src = (string) $el['src'];
-			$el['src'] = '/media/'.$src;
+			$el['src'] = '/media/'.$this->form_id.'/'.$src;
 		}
 	}
 }

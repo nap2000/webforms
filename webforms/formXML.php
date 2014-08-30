@@ -7,10 +7,10 @@
 	require 'php_code/formXML_fns.php';	// Functions and variables used by this service
 	
 	$html = $form->xslt_transform($xml_doc, $jr2HTML5_doc);		//SimpleXMLElement
-	$form->fix_media_urls($html);
 	$data = $form->xslt_transform($xml_doc, $jr2Data_doc);	//SimpleXMLElement
 	$data_to_edit = $form->data_to_edit;
 	$data_to_edit_id = $form->data_to_edit_id;
+	$form->fix_media_urls($html, $data_to_edit_id);
 
 	// Write out the html
 ?>		

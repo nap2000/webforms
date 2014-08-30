@@ -43,7 +43,6 @@ along with SMAP.  If not, see <http://www.gnu.org/licenses/>.
 	$form_id = $_GET['key'];
 	
 	$user = $_SERVER['REMOTE_USER'];
-	user_error('User: ' . $_SERVER['REMOTE_USER']);
 	
 	if (isset($_GET['datakey']) && isset($_GET['datakeyvalue'])) {		// Get the keys that identify a record for update, if they exist
 		$datakey = $_GET['datakey'];
@@ -68,16 +67,12 @@ along with SMAP.  If not, see <http://www.gnu.org/licenses/>.
 	} else {
 		$server_url = 'http://localhost';	// smap simplification
 	}
-	user_error('Server: ' . $server_url);
 	
 	/*
 	 * Get XSLT documents for the form and the form's model
 	 */
 	$success = $jr2HTML5_doc->load('xslt/openrosa2html5form_php5.xsl');
-	user_error('jr2HTML5 transformation: ' . $success);
-	
 	$success = $jr2Data_doc->load('xslt/openrosa2xmlmodel.xsl');
-	user_error('jr2Data transformation: ' . $success);
 	
 	/*
 	 * Get the form's data
