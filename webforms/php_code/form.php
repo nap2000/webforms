@@ -48,7 +48,7 @@ class Form {
 	
 	function getXML() {
 
-		$form_url = $this->server_url . '/formXML?key=' . $this->form_id . '&user=' . $this->user;
+		$form_url = $this->server_url . '/formXMLLocal?key=' . $this->form_id . '&user=' . $this->user;
 
 		// Get the manifest URL (if this form modifies existing data then the data keys will be added later)
 		//$this->html_manifest_url = '/htmlManifest/' . $this->form_id;
@@ -79,7 +79,7 @@ class Form {
 	*/
 	function getData($datakey, $datakeyvalue) {
 		user_error('Getting data, Data key: ' . $datakey.' : ' . $datakeyvalue);
-		$instance_url = $this->server_url . '/instanceXML/' . $this->form_id . '/0?user=' . $this->user .
+		$instance_url = $this->server_url . '/instanceXMLLocal/' . $this->form_id . '/0?user=' . $this->user .
 			'&key=' . $datakey . '&keyval=' . $datakeyvalue;
 
 		// Clear the html manifest URL - Single shot survey updates are not cached
