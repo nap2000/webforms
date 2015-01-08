@@ -2,10 +2,6 @@
 	<head>
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600&subset=latin,cyrillic-ext,cyrillic,greek-ext,greek,vietnamese,latin-ext' rel='stylesheet' type='text/css'>
 
-		<!--  
-		<link type="text/css" href="src/lib/enketo-core/build/css/formhub.css" media="all" rel="stylesheet" />
-		<link type="text/css" href="src/lib/enketo-core/build/css/formhub-print.css" media="print" rel="stylesheet" />	
-		-->
 		<link type="text/css" href="css/libs/webform_formhub.css" media="all" rel="stylesheet" />
 		<link type="text/css" href="css/libs/webform_print_formhub.css" media="print" rel="stylesheet" />
 		

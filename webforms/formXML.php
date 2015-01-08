@@ -62,7 +62,14 @@
 	echo("</div>");	// main controls
 	echo("<a class=\"btn btn-default disabled first-page\" href=\"#\">Return to Beginning</a>");
 	echo("<a class=\"btn btn-default disabled last-page\" href=\"#\">Go to End</a>");
-	echo("</div");	// content
-	echo("</article>");
+	echo("</div>");	// content
 
+	echo("<div style=\"margin-left: auto; margin-right: auto; width: 50%;\">");
+		echo("<a href=\"https://enketo.org/\" title=\"Enketo\">Powered by:  ");
+			echo("<img style=\"margin-bottom: 10px\" height=\"30px\" src=\"images/enketo_logo.png\" alt=\"logo\"/>");
+		echo("</a>");
+	echo("</div><br/>");
+	echo("</section>");
+	echo("</article>");
 ?>
+
